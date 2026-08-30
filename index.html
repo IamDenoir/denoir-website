@@ -2412,25 +2412,45 @@
   }
 
 
-  const prefersDark =
-    window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
+  /* =========================================================
+     THEME INITIALIZATION
+     ========================================================= */
+
+  const savedTheme =
+    localStorage.getItem(
+      'theme'
+    );
 
 
   applyTheme(
-    prefersDark
+    savedTheme === 'dark'
   );
 
+
+  /* =========================================================
+     THEME TOGGLE
+     ========================================================= */
 
   toggleBtn.addEventListener(
     'click',
     () => {
 
-      applyTheme(
+      const isDark =
         !root.classList.contains(
           'dark'
-        )
+        );
+
+
+      applyTheme(
+        isDark
+      );
+
+
+      localStorage.setItem(
+        'theme',
+        isDark
+          ? 'dark'
+          : 'light'
       );
 
     }

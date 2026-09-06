@@ -223,7 +223,10 @@
   }
 
   .nav-links a {
-    text-decoration: none;
+    text-decoration: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background-image: none !important;
 
     transition:
       color 0.2s ease;
@@ -945,13 +948,15 @@
 
     margin-top: 8px;
 
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Source Serif 4', serif;
 
     font-size: 10px;
 
+    font-style: normal;
+
     letter-spacing: 0.06em;
 
-    text-transform: uppercase;
+    text-transform: none;
 
     color: var(--accent);
 
@@ -1090,9 +1095,11 @@
   }
 
   .help-item .h-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: inherit;
 
-    font-size: 10px;
+    font-size: 13px;
+
+    font-weight: 700;
 
     color: var(--accent);
 
@@ -1108,9 +1115,9 @@
 
     font-family: 'Fraunces', serif;
 
-    font-weight: 500;
+    font-weight: 700;
 
-    font-size: 20px;
+    font-size: 21px;
   }
 
   .help-item p {
@@ -1197,9 +1204,11 @@
   .help-sub h4 {
     margin: 0 0 6px;
 
-    font-family: 'JetBrains Mono', monospace;
+    font-family: inherit;
 
-    font-size: 10px;
+    font-size: 12px;
+
+    font-weight: 700;
 
     letter-spacing: 0.05em;
 
@@ -1684,6 +1693,425 @@
     }
 
   }
+
+
+
+  /* =========================================================
+     SINGLE-PAGE ESSAY READER
+     ========================================================= */
+
+  body.essay-reading > .page,
+  body.essay-reading > footer {
+    display: none !important;
+  }
+
+  body.essay-reading > nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    z-index: 1100;
+    background: var(--bg);
+  }
+
+  body.essay-reading > nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    z-index: -1;
+  }
+
+  @media (min-width: 900px) {
+    body.essay-reading > nav {
+      padding: 22px max(0px, calc((100vw - 820px) / 2)) 22px max(64px, calc((100vw - 820px) / 2 + 64px));
+      box-sizing: border-box;
+    }
+  }
+
+  body.essay-reading .essay-reader {
+    display: block;
+  }
+
+  .essay-reader {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 64px 72px;
+    display: none;
+  }
+
+  .essay-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    z-index: 1200;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .essay-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.08s linear;
+  }
+
+  .essay-reader-header {
+    position: fixed;
+    top: var(--essay-nav-height, 0px);
+    left: 0;
+    width: 100%;
+    z-index: 1099;
+    box-sizing: border-box;
+    background: var(--bg);
+    border: 0;
+    padding: 14px 0 16px;
+  }
+
+  .essay-reader-header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 64px;
+    box-sizing: border-box;
+  }
+
+  .essay-reader-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 14px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color .2s ease;
+  }
+
+  .essay-reader-back:hover { color: var(--accent); }
+
+  .essay-reader-header-row {
+    display: grid;
+    grid-template-columns: minmax(0, 4.1fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 36px;
+    min-width: 0;
+  }
+
+  .essay-reader-category {
+    margin: 0;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .essay-reader-top-share {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex: 0 0 auto;
+  }
+
+  .essay-share-label,
+  .essay-share-trigger,
+  .essay-save-button,
+  .essay-share-option {
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    font-size: 13px;
+  }
+
+  .essay-share-trigger,
+  .essay-save-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .essay-share-trigger:hover,
+  .essay-save-button:hover,
+  .essay-share-option:hover { color: var(--accent); }
+
+  .essay-share-icon,
+  .essay-save-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .essay-share-icon svg,
+  .essay-save-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .essay-share-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 52px;
+    min-width: 150px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    z-index: 5;
+    display: none;
+  }
+
+  .essay-share-menu.open { display: grid; gap: 8px; }
+
+  .essay-share-option {
+    border: 0;
+    background: none;
+    padding: 2px 0;
+    text-align: left;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .essay-reader-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 4.1fr) minmax(175px, 1fr);
+    gap: 36px;
+    padding-top: calc(var(--essay-nav-height, 0px) + var(--essay-header-height, 0px) + 40px);
+  }
+
+  .essay-reader-main {
+    min-width: 0;
+  }
+
+  .essay-reader-intro {
+    min-width: 0;
+    padding-top: 18px;
+    margin-bottom: 28px;
+  }
+
+  .essay-reader-title {
+    max-width: 100%;
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-size: clamp(24px, 4.1vw, 36px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    overflow-wrap: anywhere;
+  }
+
+  .essay-reader-excerpt {
+    max-width: 100%;
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .essay-reader-meta {
+    max-width: 100%;
+    margin: 0;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .essay-reader-meta .meta-by {
+    font-style: italic;
+  }
+
+  .essay-reader-meta .meta-author,
+  .essay-reader-meta .meta-read-time {
+    font-style: normal;
+  }
+
+  .essay-reader-meta .meta-read-time {
+    margin-left: 42px;
+  }
+
+  .essay-reader-content {
+    max-width: 100%;
+    color: var(--ink-soft);
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1.85;
+  }
+
+  .essay-reader-content p { margin: 0 0 1.35em; }
+
+  .essay-reader-content h2,
+  .essay-reader-content h3 {
+    margin: 1.8em 0 0.65em;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    line-height: 1.25;
+  }
+
+  .essay-reader-content h2 { font-size: 28px; }
+  .essay-reader-content h3 { font-size: 22px; }
+
+  .essay-reader-content blockquote {
+    margin: 1.7em 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+  }
+
+  .essay-reader-empty {
+    padding: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .essay-reader-sidebar {
+    min-width: 0;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--essay-nav-height, 0px) + var(--essay-header-height, 0px) + 20px);
+    border-left: 1px solid var(--line);
+    padding-left: 24px;
+    padding-bottom: 20px;
+  }
+
+  .essay-reader-sidebar h3 {
+    margin: 0 0 14px;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .essay-takeaways {
+    list-style: none;
+    margin: 0 0 30px;
+    padding: 0;
+  }
+
+  .essay-takeaways li {
+    margin: 0 0 10px;
+    padding-left: 12px;
+    position: relative;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .essay-takeaways li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .essay-related {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .essay-related .essay {
+    display: block;
+    padding: 12px 0;
+  }
+
+  .essay-related .essay:first-child { padding-top: 0; }
+  .essay-related .e-num { display: none; }
+  .essay-related .e-body h4 { font-size: 15px; margin-bottom: 0; }
+  .essay-related .e-body p,
+  .essay-related .e-link { display: none; }
+
+  .essay-share {
+    display: none;
+  }
+
+  @media (max-width: 899px) {
+    .essay-reader { padding-left: 32px; padding-right: 32px; }
+
+    .essay-reader-header-inner {
+      max-width: 1100px;
+      padding: 0 32px;
+    }
+
+    .essay-reader-header-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .essay-reader-layout {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+
+    .essay-reader-sidebar {
+      position: static;
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      padding: 26px 0 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .essay-reader { padding: 0 24px 56px; }
+
+    .essay-reader-header { padding: 12px 0 16px; }
+    .essay-reader-header-inner { padding: 0 24px; }
+    .essay-reader-back { margin-bottom: 12px; }
+
+    .essay-reader-header-row {
+      align-items: center;
+      gap: 12px;
+    }
+
+    .essay-reader-category { font-size: 20px; }
+    .essay-reader-top-share { gap: 8px; }
+    .essay-share-label,
+    .essay-share-trigger,
+    .essay-save-button { font-size: 12px; }
+
+    .essay-reader-intro {
+      padding-top: 16px;
+      margin-bottom: 24px;
+    }
+
+    .essay-reader-title { font-size: clamp(23px, 6.8vw, 31px); }
+    .essay-reader-excerpt,
+    .essay-reader-content { font-size: 17px; }
+
+    .essay-reader-sidebar { padding-top: 24px; }
+  }
+
+  @media (max-width: 390px) {
+    .essay-reader { padding-left:20px; padding-right:20px; }
+    .essay-reader-header-inner { padding-left:20px; padding-right:20px; }
+    .essay-reader-category { font-size:19px; }
+  }
+
 
 </style>
 
@@ -2205,6 +2633,76 @@
   </section>
 
 </div>
+
+
+<!-- =========================================================
+     SINGLE-PAGE ESSAY READER
+     ========================================================= -->
+
+<section class="essay-reader" id="essayReader" aria-live="polite" aria-hidden="true">
+
+  <div class="essay-progress" aria-hidden="true"><div class="essay-progress-bar" id="essayProgressBar"></div></div>
+
+  <header class="essay-reader-header" id="essayReaderHeader">
+    <div class="essay-reader-header-inner">
+      <button class="essay-reader-back" id="essayReaderBack" type="button">← Back to Essays</button>
+
+      <div class="essay-reader-header-row">
+        <p class="essay-reader-category" id="essayReaderCategory"></p>
+
+        <div class="essay-reader-top-share" aria-label="Essay controls">
+          <button class="essay-share-trigger" id="essayShareTrigger" type="button" aria-expanded="false" aria-haspopup="true">
+            <span>Share essay</span>
+            <span class="essay-share-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="2.5"></circle>
+                <circle cx="6" cy="12" r="2.5"></circle>
+                <circle cx="18" cy="19" r="2.5"></circle>
+                <path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"></path>
+              </svg>
+            </span>
+          </button>
+
+          <button class="essay-save-button" id="essaySaveButton" type="button" aria-label="Save essay" aria-pressed="false">
+            <span>Save</span>
+            <span class="essay-save-icon" id="essaySaveIcon" aria-hidden="true"></span>
+          </button>
+
+          <div class="essay-share-menu" id="essayShareMenu" role="menu">
+            <button class="essay-share-option" id="shareLinkedIn" type="button" role="menuitem">LinkedIn</button>
+            <button class="essay-share-option" id="shareWhatsApp" type="button" role="menuitem">WhatsApp</button>
+            <button class="essay-share-option" id="shareEmail" type="button" role="menuitem">Email</button>
+            <button class="essay-share-option" id="shareCopy" type="button" role="menuitem">Copy link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="essay-reader-layout" id="essayReaderLayout">
+    <main class="essay-reader-main">
+      <div class="essay-reader-intro">
+        <h1 class="essay-reader-title" id="essayReaderTitle"></h1>
+        <p class="essay-reader-excerpt" id="essayReaderExcerpt"></p>
+        <p class="essay-reader-meta" id="essayReaderMeta"></p>
+      </div>
+      <article class="essay-reader-content" id="essayReaderContent"></article>
+    </main>
+
+    <aside class="essay-reader-sidebar" id="essayReaderSidebar">
+      <section>
+        <h3>Key Takeaways</h3>
+        <ul class="essay-takeaways" id="essayTakeaways"></ul>
+      </section>
+
+      <section>
+        <h3>You might also like</h3>
+        <ul class="essay-related" id="essayRelated"></ul>
+      </section>
+    </aside>
+  </div>
+
+</section>
 
 
 <!-- =========================================================
@@ -2918,6 +3416,27 @@
   ];
 
 
+  /* Add stable slugs/IDs without changing the existing essay data.
+     Future essays may also provide their own `slug` and `content`. */
+  function slugifyEssayTitle(title) {
+    return title
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  ESSAY_DATA.forEach((cat) => {
+    cat.essays.forEach((essay, index) => {
+      essay.slug = essay.slug || slugifyEssayTitle(essay.title);
+      essay.id = essay.id || `${cat.key}-${index + 1}`;
+      essay.content = essay.content || '';
+      essay.category = cat.title;
+    });
+  });
+
+
   const PAGE_SIZE = 5;
 
 
@@ -3066,7 +3585,7 @@
                 <div class="e-body">
 
                   <h4>
-                    <a href="${essay.url}">${essay.title}</a>
+                    <a class="essay-link" data-essay-slug="${essay.slug}" href="#essay/${essay.slug}">${essay.title}</a>
                   </h4>
 
 
@@ -3076,8 +3595,9 @@
 
 
                   <a
-                    class="e-link"
-                    href="${essay.url}"
+                    class="e-link essay-link"
+                    data-essay-slug="${essay.slug}"
+                    href="#essay/${essay.slug}"
                   >
 
                     Read essay →
@@ -3480,6 +4000,301 @@
 
     }
   );
+
+
+  /* =========================================================
+     SINGLE-PAGE ESSAY READER + HASH ROUTING
+     ========================================================= */
+
+  const essayReader = document.getElementById('essayReader');
+  const essayReaderBack = document.getElementById('essayReaderBack');
+  const essayReaderHeader = document.getElementById('essayReaderHeader');
+  const essayReaderCategory = document.getElementById('essayReaderCategory');
+  const essayReaderTitle = document.getElementById('essayReaderTitle');
+  const essayReaderExcerpt = document.getElementById('essayReaderExcerpt');
+  const essayReaderContent = document.getElementById('essayReaderContent');
+  const essayReaderMeta = document.getElementById('essayReaderMeta');
+  const essayTakeaways = document.getElementById('essayTakeaways');
+  const essayRelated = document.getElementById('essayRelated');
+  const essayShareTrigger = document.getElementById('essayShareTrigger');
+  const essayShareMenu = document.getElementById('essayShareMenu');
+  const essaySaveButton = document.getElementById('essaySaveButton');
+  const essaySaveIcon = document.getElementById('essaySaveIcon');
+  const shareLinkedIn = document.getElementById('shareLinkedIn');
+  const shareWhatsApp = document.getElementById('shareWhatsApp');
+  const shareEmail = document.getElementById('shareEmail');
+  const shareCopy = document.getElementById('shareCopy');
+  const essayProgressBar = document.getElementById('essayProgressBar');
+
+  let essayReturnScrollY = 0;
+  let essayOpenedFromListing = false;
+  let currentEssay = null;
+  let currentEssayUrl = '';
+
+  function findEssayBySlug(slug) {
+    for (const category of ESSAY_DATA) {
+      const essay = category.essays.find(item => item.slug === slug);
+      if (essay) return essay;
+    }
+    return null;
+  }
+
+  function essayUrl(essay) {
+    return `https://iamdenoir.com/#essay/${essay.slug}`;
+  }
+
+  function setReadingHeaderMetrics() {
+    const nav = document.querySelector('body.essay-reading > nav');
+    if (!nav || !essayReaderHeader) return;
+
+    const navHeight = nav.getBoundingClientRect().height;
+    const headerHeight = essayReaderHeader.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--essay-nav-height', `${navHeight}px`);
+    document.documentElement.style.setProperty('--essay-header-height', `${headerHeight}px`);
+  }
+
+  function setShareLinks(essay, directUrl) {
+    currentEssayUrl = directUrl;
+    shareLinkedIn.dataset.url = directUrl;
+    shareWhatsApp.dataset.url = directUrl;
+    shareEmail.dataset.url = directUrl;
+    shareCopy.dataset.url = directUrl;
+  }
+
+  function setSavedState(essay) {
+    const saved = JSON.parse(localStorage.getItem('savedEssays') || '[]');
+    const isSaved = saved.includes(essay.slug);
+    essaySaveButton.setAttribute('aria-pressed', String(isSaved));
+    essaySaveIcon.innerHTML = isSaved
+      ? `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5A2.5 2.5 0 0 1 8.5 1h7A2.5 2.5 0 0 1 18 3.5V22l-6-3.5L6 22V3.5z"></path></svg>`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3.5A2.5 2.5 0 0 1 8.5 1h7A2.5 2.5 0 0 1 18 3.5V22l-6-3.5L6 22V3.5z"></path></svg>`;
+  }
+
+  function toggleSavedEssay() {
+    if (!currentEssay) return;
+    const saved = JSON.parse(localStorage.getItem('savedEssays') || '[]');
+    const index = saved.indexOf(currentEssay.slug);
+    if (index >= 0) saved.splice(index, 1);
+    else saved.push(currentEssay.slug);
+    localStorage.setItem('savedEssays', JSON.stringify(saved));
+    setSavedState(currentEssay);
+  }
+
+  function openShareTarget(type) {
+    if (!currentEssay) return;
+    const title = currentEssay.title;
+    const url = currentEssayUrl;
+
+    if (type === 'linkedin') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'noopener');
+    } else if (type === 'whatsapp') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(title + '\n\n' + url)}`, '_blank', 'noopener');
+    } else if (type === 'email') {
+      window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(title + '\n\n' + url)}`;
+    } else if (type === 'copy') {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(() => {
+          shareCopy.textContent = 'Copied';
+          setTimeout(() => { shareCopy.textContent = 'Copy link'; }, 1400);
+        });
+      } else {
+        const area = document.createElement('textarea');
+        area.value = url;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        shareCopy.textContent = 'Copied';
+        setTimeout(() => { shareCopy.textContent = 'Copy link'; }, 1400);
+      }
+    }
+
+    essayShareMenu.classList.remove('open');
+    essayShareTrigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function renderEssaySidebar(essay) {
+    const takeaways = Array.isArray(essay.takeaways) && essay.takeaways.length
+      ? essay.takeaways
+      : (essay.blurb ? [essay.blurb] : ['A concise perspective on the central idea of this essay.']);
+
+    essayTakeaways.innerHTML = takeaways.slice(0, 4).map(item => `<li>${item}</li>`).join('');
+
+    const related = [];
+    ESSAY_DATA.forEach(category => {
+      const candidate = category.essays.find(item => item.slug !== essay.slug);
+      if (candidate && related.length < 4) related.push(candidate);
+    });
+
+    if (related.length < 4) {
+      ESSAY_DATA.flatMap(category => category.essays).forEach(candidate => {
+        if (candidate.slug !== essay.slug && !related.some(item => item.slug === candidate.slug) && related.length < 4) {
+          related.push(candidate);
+        }
+      });
+    }
+
+    essayRelated.innerHTML = related.map((item, index) => `
+      <li class="essay">
+        <span class="e-num">${String(index + 1).padStart(2, '0')}</span>
+        <div class="e-body">
+          <h4><a class="essay-link" data-essay-slug="${item.slug}" href="#essay/${item.slug}">${item.title}</a></h4>
+        </div>
+      </li>
+    `).join('');
+  }
+
+  function updateEssayProgress() {
+    if (!document.body.classList.contains('essay-reading')) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0
+      ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100))
+      : 100;
+    essayProgressBar.style.width = `${progress}%`;
+    setReadingHeaderMetrics();
+  }
+
+  function openEssay(essay, addHistory) {
+    if (!essay) return;
+
+    if (!document.body.classList.contains('essay-reading')) {
+      essayReturnScrollY = window.scrollY;
+      essayOpenedFromListing = true;
+    }
+
+    currentEssay = essay;
+    const directUrl = essayUrl(essay);
+
+    essayReaderCategory.textContent = essay.category;
+    essayReaderTitle.textContent = essay.title;
+    essayReaderExcerpt.textContent = essay.blurb || '';
+
+    const author = essay.author || 'Denóir—The Maverick';
+    const readTime = essay.readTime || '3 min read';
+    essayReaderMeta.innerHTML = `<span class="meta-by">By</span> <span class="meta-author">${author}</span><span class="meta-read-time">${readTime}</span>`;
+
+    if (essay.content && essay.content.trim()) {
+      essayReaderContent.innerHTML = essay.content;
+    } else {
+      essayReaderContent.innerHTML = '<p class="essay-reader-empty">The full essay will appear here once its final text has been added.</p>';
+    }
+
+    renderEssaySidebar(essay);
+    setShareLinks(essay, directUrl);
+    setSavedState(essay);
+
+    document.body.classList.add('essay-reading');
+    essayReader.setAttribute('aria-hidden', 'false');
+
+    if (addHistory) window.location.hash = `essay/${essay.slug}`;
+
+    essayShareMenu.classList.remove('open');
+    essayShareTrigger.setAttribute('aria-expanded', 'false');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    requestAnimationFrame(() => {
+      setReadingHeaderMetrics();
+      updateEssayProgress();
+    });
+  }
+
+  function closeEssay(useHistory) {
+    document.body.classList.remove('essay-reading');
+    essayReader.setAttribute('aria-hidden', 'true');
+    essayProgressBar.style.width = '0%';
+    essayShareMenu.classList.remove('open');
+    essayShareTrigger.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.removeProperty('--essay-nav-height');
+    document.documentElement.style.removeProperty('--essay-header-height');
+
+    if (useHistory && window.location.hash.toLowerCase().startsWith('#essay/')) {
+      history.back();
+      return;
+    }
+
+    if (window.location.hash.toLowerCase().startsWith('#essay/')) {
+      history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+
+    currentEssay = null;
+    window.scrollTo({ top: essayReturnScrollY, behavior: 'instant' });
+  }
+
+  function handleEssayRoute() {
+    const hash = window.location.hash;
+    const prefix = '#essay/';
+
+    if (hash.toLowerCase().startsWith(prefix)) {
+      const slug = decodeURIComponent(hash.slice(prefix.length));
+      const essay = findEssayBySlug(slug);
+
+      if (essay) {
+        if (!document.body.classList.contains('essay-reading')) essayOpenedFromListing = false;
+        openEssay(essay, false);
+        return;
+      }
+    }
+
+    if (document.body.classList.contains('essay-reading')) closeEssay(false);
+  }
+
+  catList.addEventListener('click', (event) => {
+    const link = event.target.closest('.essay-link');
+    if (!link) return;
+    event.preventDefault();
+    const essay = findEssayBySlug(link.dataset.essaySlug);
+    if (!essay) return;
+    openEssay(essay, true);
+  });
+
+
+  essayRelated.addEventListener('click', (event) => {
+    const link = event.target.closest('.essay-link');
+    if (!link) return;
+    event.preventDefault();
+    const essay = findEssayBySlug(link.dataset.essaySlug);
+    if (!essay) return;
+    openEssay(essay, false);
+    window.location.hash = `essay/${essay.slug}`;
+  });
+
+  essayReaderBack.addEventListener('click', () => {
+    closeEssay(false);
+    history.replaceState(null, '', `${window.location.pathname}${window.location.search}#essays`);
+    const essaysSection = document.getElementById('essays');
+    if (essaysSection) essaysSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+  });
+
+  essayShareTrigger.addEventListener('click', () => {
+    const isOpen = essayShareMenu.classList.toggle('open');
+    essayShareTrigger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  essaySaveButton.addEventListener('click', toggleSavedEssay);
+  shareLinkedIn.addEventListener('click', () => openShareTarget('linkedin'));
+  shareWhatsApp.addEventListener('click', () => openShareTarget('whatsapp'));
+  shareEmail.addEventListener('click', () => openShareTarget('email'));
+  shareCopy.addEventListener('click', () => openShareTarget('copy'));
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.essay-reader-top-share')) {
+      essayShareMenu.classList.remove('open');
+      essayShareTrigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  window.addEventListener('scroll', updateEssayProgress, { passive: true });
+  window.addEventListener('resize', () => {
+    setReadingHeaderMetrics();
+    updateEssayProgress();
+  });
+  window.addEventListener('hashchange', handleEssayRoute);
+  window.addEventListener('popstate', handleEssayRoute);
+
+  handleEssayRoute();
+
 
 </script>
 

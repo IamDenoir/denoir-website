@@ -120,7 +120,7 @@
 
     .page {
       max-width: 820px;
-      padding: 0 0 0 64px;
+      padding: 0 64px;
     }
 
     .margin-rule {
@@ -632,6 +632,30 @@
   }
 
 
+  .essays-intro {
+    margin: -4px 0 30px;
+
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    font-style: normal;
+    max-width: 760px;
+  }
+
+  .essays-feed {
+    margin-top: 0;
+  }
+
+  .essays-feed .essay {
+    padding: 22px 0;
+    cursor: pointer;
+  }
+
+  .essays-feed .essay:first-child {
+    padding-top: 4px;
+  }
+
+
   /* =========================================================
      ABOUT
      ========================================================= */
@@ -884,7 +908,7 @@
   .essay {
     display: flex;
 
-    gap: 16px;
+    gap: 0;
 
     padding: 17px 0;
 
@@ -895,18 +919,6 @@
     border-top: none;
 
     padding-top: 4px;
-  }
-
-  .essay .e-num {
-    font-family: 'JetBrains Mono', monospace;
-
-    font-size: 10px;
-
-    color: var(--muted);
-
-    min-width: 20px;
-
-    padding-top: 5px;
   }
 
   .essay .e-body h4 {
@@ -941,6 +953,7 @@
     color: var(--muted);
 
     line-height: 1.55;
+    font-style: italic;
   }
 
   .essay a.e-link {
@@ -950,7 +963,7 @@
 
     font-family: 'Source Serif 4', serif;
 
-    font-size: 10px;
+    font-size: 14px;
 
     font-style: normal;
 
@@ -1201,16 +1214,20 @@
     padding-top: 0;
   }
 
-  .help-sub h4 {
+    .help-sub h4 {
     margin: 0 0 6px;
 
-    font-family: inherit;
+    font-family: 'Source Serif 4', serif;
 
-    font-size: 12px;
+    font-size: 14px;
+
+    font-style: normal;
 
     font-weight: 700;
 
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+
+    text-transform: none;
 
     color: var(--accent);
   }
@@ -1800,9 +1817,9 @@
 
   .essay-reader-header-row {
     display: grid;
-    grid-template-columns: minmax(0, 4.1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 4.1fr) minmax(175px, 1fr);
+    column-gap: 44px;
     align-items: center;
-    column-gap: 36px;
     min-width: 0;
   }
 
@@ -1893,12 +1910,15 @@
   .essay-reader-layout {
     display: grid;
     grid-template-columns: minmax(0, 4.1fr) minmax(175px, 1fr);
-    gap: 36px;
-    padding-top: calc(var(--essay-nav-height, 0px) + var(--essay-header-height, 0px) + 40px);
+    gap: 44px;
+    padding-top: calc(var(--essay-nav-height, 0px) + var(--essay-header-height, 0px) + 24px);
   }
 
   .essay-reader-main {
     min-width: 0;
+    width: 86%;
+    margin-left: 8%;
+    margin-right: 6%;
   }
 
   .essay-reader-intro {
@@ -1923,7 +1943,7 @@
     max-width: 100%;
     margin: 0 0 12px;
     color: var(--muted);
-    font-family: 'Source Serif 4', serif;
+    font-family: Georgia, serif;
     font-size: 18px;
     line-height: 1.6;
     font-style: italic;
@@ -1933,8 +1953,8 @@
     max-width: 100%;
     margin: 0;
     color: var(--muted);
-    font-family: 'Source Serif 4', serif;
-    font-size: 13px;
+    font-family: Georgia, serif;
+    font-size: 17px;
     font-style: normal;
   }
 
@@ -1953,13 +1973,24 @@
 
   .essay-reader-content {
     max-width: 100%;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
     color: var(--ink-soft);
-    font-family: 'Source Serif 4', serif;
+    font-family: Georgia, serif;
     font-size: 18px;
     line-height: 1.85;
   }
 
   .essay-reader-content p { margin: 0 0 1.35em; }
+
+  .essay-reader-content > p:first-child::first-letter {
+    float: left;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 4.75em;
+    line-height: 0.78;
+    margin: 0.08em 0.10em 0 0;
+  }
 
   .essay-reader-content h2,
   .essay-reader-content h3 {
@@ -2005,6 +2036,8 @@
     color: var(--ink);
   }
 
+  .meta-separator { margin: 0 0.7em; position: relative; left: 21px; }
+
   .essay-takeaways {
     list-style: none;
     margin: 0 0 30px;
@@ -2016,17 +2049,31 @@
     padding-left: 12px;
     position: relative;
     color: var(--muted);
-    font-family: 'Source Serif 4', serif;
-    font-size: 14px;
+    font-family: Georgia, serif;
+    font-size: 15px;
     line-height: 1.55;
   }
 
   .essay-takeaways li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--accent);
+    top: 0.68em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
   }
+
+  .essay-takeaways li.essay-takeaway-core {
+    padding-left: 0;
+    margin-bottom: 16px;
+  }
+
+  .essay-takeaways li.essay-takeaway-core::before {
+    display: none;
+  }
+
 
   .essay-related {
     list-style: none;
@@ -2040,7 +2087,6 @@
   }
 
   .essay-related .essay:first-child { padding-top: 0; }
-  .essay-related .e-num { display: none; }
   .essay-related .e-body h4 { font-size: 15px; margin-bottom: 0; }
   .essay-related .e-body p,
   .essay-related .e-link { display: none; }
@@ -2050,22 +2096,20 @@
   }
 
   @media (max-width: 899px) {
-    .essay-reader { padding-left: 32px; padding-right: 32px; }
-
     .essay-reader-header-inner {
       max-width: 1100px;
       padding: 0 32px;
     }
 
-    .essay-reader-header-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
     .essay-reader-layout {
       grid-template-columns: 1fr;
       gap: 34px;
+    }
+
+    .essay-reader-main {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
     }
 
     .essay-reader-sidebar {
@@ -2084,7 +2128,9 @@
     .essay-reader-back { margin-bottom: 12px; }
 
     .essay-reader-header-row {
+      display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
     }
 
@@ -2261,7 +2307,7 @@
 
     <p>
 
-      In 2011, I graduated 2nd best in my class. Shortly after, I landed a role at one of the country's biggest commercial banks. Within a year, I was ranked among the Top 10 performers under 30. I was only 23.
+      In 2011, I graduated 2<sup>nd</sup> best in my class. Shortly after, I landed a role at one of the country's biggest commercial banks. Within a year, I was ranked among the Top 10 performers under 30. I was only 23.
 
     </p>
 
@@ -2372,11 +2418,19 @@
       Essays
     </p>
 
+    <p class="essays-intro">
+      A selection of essays on the strategies, ideas, and beliefs that shape businesses, leaders, and the way we see the world.
+    </p>
 
     <ul
-      class="cat-list"
-      id="catList"
+      class="essay-list essays-feed"
+      id="essayList"
     ></ul>
+
+    <div
+      class="pagination"
+      id="essayPagination"
+    ></div>
 
   </section>
 
@@ -3201,220 +3255,292 @@
      ========================================================= */
 
   const ESSAY_DATA = [
-
     {
-      key: 'strategy',
-
-      title: 'Strategy',
-
-      desc: 'The choices, and trade-offs that determine where a business goes and how it wins.',
-
+      key: 'mindset',
+      title: 'Mindset',
+      desc: 'The beliefs everyone takes for granted — and the ones worth challenging.',
       essays: [
-
         {
-          title: 'The Quiet Advantage of Boring Businesses',
+          title: 'The Founder’s Trap: Is Your Business a Path to Freedom or a Gilded Cage?',
+          blurb: 'If your business cannot function without you, you haven’t built one—you’ve built yourself a job that answers to you.',
+          url: '#',
+          content: `<p>While waiting for the heavy evening traffic to settle the other evening, a friend and I ducked into a nearby restaurant for coffee. As we talked, our attention was drawn to a man outside offloading supplies from his car. He had boxes stacked high, paper bags tucked under his arms, and a thick wad of what looked like receipts folded in his hand.</p>
 
-          blurb: 'Why the most durable founders build for cash flow, not headlines.',
+<p>A few minutes later, he was inside. But he wasn’t just delivering; he was everywhere—leaning over tables, telling one waiter what to do, and correcting another on the exact way to serve a plate. His phone was buzzing every few minutes. Between barks of instruction to his staff, he was barking orders into the receiver before disappearing into the manager’s office.</p>
 
-          url: '#'
-        },
+<p>My friend leaned in and whispered, “<em>He must be the founder, the owner, and... well, everything.</em>”</p>
 
-        {
-          title: 'Stop Optimizing for the Room You\'re Not In',
+<p>In that moment, I saw a worrying pattern I’ve witnessed too often among entrepreneurs. We start businesses to escape unemployment or the constant pressure of answering to a horrible boss, with freedom being the ultimate prize. But somewhere along the way, the business stops being the path to freedom and starts becoming a prison we don’t want to be in.</p>
 
-          blurb: 'Writing for the customers and investors who matter, not the audience that\'s merely loud.',
+<p>In the beginning, doing everything makes sense. In fact, it makes a lot of sense. You are the chief strategist, the marketing manager, the janitor, the accountant, and the HR manager. This <em>hustle phase</em> is how you learn the machine from the inside.</p>
 
-          url: '#'
-        },
+<p>However, the problem starts when the business actually starts to grow but that phase doesn’t stop. When the customers start flocking in and the revenue grows, many founders tend to respond by tightening their grip rather than redesigning how the business should run. They mistake involvement for leadership, presence for value, and control for safety, and believe that for a task to be done <em>right</em>, they must do it themselves, or at least oversee every micro-movement.</p>
 
-        {
-          title: 'The 3-Horizon Model for Founder Visibility',
+<p>But here is the hard truth many founders don’t want to hear: the moment your business cannot function without you, you stop being the engine of growth and become its major choke point.</p>
 
-          blurb: 'A simple map for deciding what to publish now, next, and never.',
+<p>If you cannot take a day or two off without your phone exploding, you haven’t built a business, you’ve successfully built yourself a job that happens to answer to you. I love to call it self-employment with better branding.</p>
 
-          url: '#'
-        },
+<p>True entrepreneurship is about building a business that gives you freedom and peace of mind. These are ventures built on systems, not heroics. That means no single person is the brain of the business or the only person holding everything together, but there is a robust business continuity management framework in place.</p>
 
-        {
-          title: 'From Expertise to Equity',
+<p>When an enterprise fails to transition from founder-dependent heroics to a system-driven infrastructure, severe structural liabilities emerge. This operational drag cripples long-term viability because it creates a permanent operational choke point.</p>
 
-          blurb: 'How credibility compounds like capital — and a working model for treating it that way.',
+<p>However, transitioning away from daily operations is no easy feat and cannot happen overnight; so, it must be executed systematically through a disciplined, phased manner to stress-test the new organizational systems.</p>
 
-          url: '#'
-        },
+<p>First, you must departmentalize the business by breaking the organization into separate, distinct functions with clear operational linkages. By distributing responsibilities rather than centralizing them, you prevent any single department from relying entirely on your supervision.</p>
 
-        {
-          title: 'The Moat Nobody Can Copy',
+<p>Second, document the tasks that currently live only in your head. You don’t need a 50-page manual; just a simple document that allows your team to act without asking for your permission. Examples may include a Client Onboarding Flow, or a Problem-Solving Decision Matrix. The goal here is for you to stay <em>in control</em> without having to be physically present to witness every transaction.</p>
 
-          blurb: 'Why a founder\'s point of view is the one advantage competitors can\'t replicate.',
+<p>Without documented processes, the business possesses zero enterprise value, but remains a fragile, highly volatile entity. If the founder steps away, the entire operational architecture collapses, proving that the business is merely an expensive job disguised as ownership.</p>
 
-          url: '#'
-        },
+<p>However, most founders often resist these because they believe no one can do it <em>“as well as me.”</em> While that may be true, in most cases, it is also irrelevant. Because, even if a team member is only 75% to 85% as good as you, a systemized team of three or five such people will outperform you every single time. So, the goal is not individual perfection, but organizational continuity, scalability, and freedom.</p>
 
-        {
-          title: 'Pricing Is a Positioning Decision',
+<p>The real cost of perfectionism most founders don’t see is strategic stagnation. When a founder spends most of their day on microwork, they leave zero room for strategic work—exploring market expansion, driving product innovation, or optimizing long-term financial health.</p>
 
-          blurb: 'What your price actually communicates before a customer reads a word of copy.',
+<p>By delegating the operational <em>\*hows \*</em>to your staff, you finally buy the mental bandwidth to focus on the strategic <em>where-to-next.</em> So, I believe real growth doesn’t come from working <em>in</em> the business, but from having the time to work <em>on</em> it. This shift is the only sure way a business can truly scale.</p>
 
-          url: '#'
-        },
+<p>Once such structure exists, you can begin your transition by deliberately arriving at the enterprise late, for example after 11:00 AM, to see if your team can navigate the high-velocity morning rush entirely on their own.</p>
 
-        {
-          title: 'The Slow Build Is Still a Strategy',
+<p>When the morning routine stabilizes, execute systematic early departures before the business day officially concludes. This protocol will test whether your team can execute closing sequences and daily reporting metrics without your oversight. If that works out well, escalate to the full <em>No-show Day</em> to force the team to handle critical decisions and solve problems independently.</p>
 
-          blurb: 'A case for compounding over sprinting, told through three founder stories.',
+<p>Finally, push in the 3-5 days blackout where you go fully offline—no calls, no WhatsApp, and no <em>just checking-ins</em>. This operational isolation is the ultimate litmus test to prove whether your enterprise is a self-sustaining utility or an unstable dependency.</p>
 
-          url: '#'
+<p>If the business survives—or better yet, thrives during your absence—congratulations, you’ve built yourself something real, scalable, and independent. If everything stalls, you don’t need more hustle or motivation, you need systems. Build them first, then focus on growth afterwards.</p>
+
+<p>Because the point of building a business was never to imprison yourself inside it, but to buy back your time, your sanity and your freedom. Anything else is simply employment disguised as ownership.</p>`
         }
-
       ]
     },
-
 
     {
       key: 'leadership',
-
       title: 'Leadership',
-
       desc: 'The thinking and decisions that shape how leaders build, lead, and perform.',
-
       essays: [
-
         {
-          title: 'The Decision Nobody Saw Coming',
+          title: 'Productivity Is a Scam: Why Systemized Laziness Wins',
+          blurb: 'The most productive leaders aren’t necessarily working harder; they’re building systems that eliminate unnecessary work.',
+          url: '#',
+          content: `<p>I have a lot of friends who are entrepreneurs, and I can comfortably say that many of them are highly successful at their craft. Some have built thriving, sustainable companies across the region, while others are still figuring out their path to the top. But the most fascinating case study in business architecture belongs to my old boarding school roommate, Kenny.</p>
 
-          blurb: 'Inside a CEO\'s choice to walk away from a category-defining deal.',
+<p>Kenny was, without a doubt, the laziest person I knew. He slept through most of the day and routinely skipped evening study sessions. The only things he did with absolute consistency were showing up on time for class and being first in line for meals at the dining hall. For everything else, his commitment was fifty-fifty, always choosing the easiest, lowest-effort route possible. He used to laugh and call himself a lion—arguing that sleeping for twenty hours a day was actually a form of strategic resting, allowing him to attack his work with maximum intensity at the final moment.</p>
 
-          url: '#'
+<p>After graduation, Kenny didn’t bother applying for standard corporate jobs like the rest of our class. Instead, he started building a business he was passionate about from scratch. Today, that enterprise scales across the entire East African region, yet Kenny spends most of his time traveling, catching up with friends, and doing what he loves most: living life on his own terms.</p>
+
+<p>While competitors hired more supervisors, Kenny invested heavily in standardized production processes, distributor networks, and inventory systems that allowed the business to operate without his daily involvement.</p>
+
+<p>To be clear, Kenny worked incredibly hard in the beginning. The difference was that he worked hard building systems, while most people work hard serving systems.</p>
+
+<p>He always talked about Albert Einstein’s famous philosophy that if he were given one hour to save the planet, he would spend fifty-nine minutes defining the problem and one minute resolving it. Most people view that as a statement about genius, but it is fundamentally a statement about <em>strategic laziness.</em> The most effective minds are deeply unwilling to waste energy attacking the wrong thing. They invest disproportionate effort into understanding root causes because they know precision eliminates unnecessary work.</p>
+
+<p>On the other side of the spectrum is my brother-in-law, who runs a manufacturing business. He is an incredibly hardworking gentleman, who is perpetually obsessed with traditional productivity metrics. He operates under the assumption that the busier his employees are, the more useful they are to the organization. He loves the control of having someone manually track every inventory shipment and personally sign off on every physical delivery note. He actively optimizes for visible effort and the predictable result is that he spends most of his time firefighting and struggling to protect his market share within a single country while burning out on bandwidth.</p>
+
+<p>The contrast between the two is stark, and it brings to mind Bill Gates’ famous observation that he would always choose a lazy person to do a difficult job, because a lazy person will instinctively find an elegant, easy way to complete it.</p>
+
+<p>The people who obsess over system design are usually the ones most determined to avoid unnecessary personal toil. They don’t ask how they can work harder tomorrow, but why they are doing a task manually today. That question changes almost everything. Instead of hiring more employees to manage operations, they build automated workflows, and instead of allowing themselves to become the bottleneck, they build processes that keep work moving even without them.</p>
+
+<p>The irony is that these systemized slackers frequently work harder, for a specific period of time, than anyone else during the early stages of a venture. However, their energy is strictly concentrated on building a repeatable machine rather than turning the crank manually forever.</p>
+
+<p>This is where many organizations miscalculate value entirely. Like my brother-in-law, they reward rapid, heroic firefighting instead of permanent problem elimination. They celebrate the manager who heroically solves ten crises a week while completely ignoring the systems architect who quietly engineered a process that prevented those ten crises from occurring in the first place. One looks like a corporate superstar, but the other is the one actually building equity.</p>
+
+<p>Early-stage companies can survive on heroic individual effort. A founder can personally approve every contract, manually inspect every output, and rely entirely on personal charisma. But scale ruthlessly punishes heroics. Every manual dependency eventually slows things down, operational bottlenecks turn into costly liabilities, and temporary workarounds create bigger problems down the road as organizational complexity increases. The companies that dominate are not the ones with the hardest-working individuals—they are the ones with the strongest systems.</p>
+
+<p>The objective is never to lower your ambitions; it is to become strategically selective about where you spend your energy. Leadership requires you to protect your right to be intellectually lazy about minor, routine details so that you can surrender those tasks entirely to systems. This preserves your scarce cognitive bandwidth for high-leverage moves: capital allocation choices, shifting market dynamics, core product architecture, and long-term strategic positioning. That is where leadership creates disproportionate value.</p>
+
+<p>The executive buried in back-to-back meetings is rarely creating long-term value; the executive who built the infrastructure that made those meetings unnecessary almost certainly is. True business growth is never about constant motion. Ultimate leverage is what happens when today’s structural effort permanently eliminates tomorrow’s manual work.</p>
+
+<p>Anyone can build a business that depends on their constant motion. Visionary leaders build systems that keep moving even when they stand still.</p>`
         },
-
         {
-          title: 'How a Failed Raise Became Our Best Pitch',
+          title: 'The Customer Isn’t King—Your Employees Are. Are You Treating Them Like It?',
+          blurb: 'The experience you create inside your business for your employees inevitably shapes the one your customers receive.',
+          url: '#',
+          content: `<p>For a very long time, I’ve seen businesses repeat the same old mantra: <em>the customer is king.</em></p>
 
-          blurb: 'Turning a hard year into the story that finally landed with investors.',
+<p>And that’s right. After all, without customers there is no business. So, many companies have invested heavily in customer experience policies, loyalty programs, and marketing campaigns, all designed to make customers feel valued.</p>
 
-          url: '#'
-        },
+<p>But over time, I began to question whether we’ve been looking at the <em>kingdom</em> the wrong way. Because in reality, the customer does not interact with your values or slogans—they interact with your employees.</p>
 
-        {
-          title: 'What I Tell Every First-Time CEO',
+<p>And that single operational fact changes everything.</p>
 
-          blurb: 'A short, quotable distillation from a dozen founder conversations.',
+<p>An employee is the living face of your business. They are the voice your customers hear on the phone, the person answering their questions, solving their problems, handling their complaints, and shaping the customer’s experience in real time.</p>
 
-          url: '#'
-        },
+<p>Every single time, employees serve as the critical bridge between the promise a business makes and the reality the customer experiences. And that bridge can either strengthen your reputation or slowly and quietly destroy it.</p>
 
-        {
-          title: 'The Cost of Being Easy to Work With',
+<p>Because of this, employees can be like double-edged swords. An empowered and appreciated employee will show empathy, take initiative, and go the extra mile to solve problems, often turning an ordinary interaction into an exceptional experience.</p>
 
-          blurb: 'When agreeableness becomes a leadership liability.',
+<p>On the other hand, a frustrated or underappreciated employee will do the exact opposite. They may ignore customers, show indifference, delay solutions, and ultimately drive customers away, into the welcome embrace of your competition. And that difference often has very little to do with skill—it has everything to do with how that employee is treated inside the organization.</p>
 
-          url: '#'
+<p>Yet, oftentimes, I have seen many founders and business leaders obsess over how customers should be treated, but spend far less time thinking about how their employees experience the workplace. Yet it is unrealistic to expect people who feel undervalued, unheard, or overworked to deliver extraordinary service consistently.</p>
+
+<p>And many employers forget that the experience they create for their employees becomes the exact experience their customers receive.</p>
+
+<p>When employees feel respected, empowered, and trusted, that attitude naturally flows outward to customers. On the flip side, when they feel neglected, micromanaged or burning out under toxicity, that frustration inevitably finds its way to the front line.</p>
+
+<p>This is why some of the most successful organizations I know focus heavily on internal organizational culture, because they understand that great customer experiences rarely happen by accident—they are built on teams that feel valued and supported.</p>
+
+<p>So, perhaps it’s time to rethink the old saying.</p>
+
+<p>Yes, customers matter. They always will. But if you want to consistently serve <em>\*the king, \*</em> you must first take care of the people who stand in front of him.</p>
+
+<p>Because in the daily life of a growing business, employees are not just workers; they are your business ambassadors, your systems operators, and oftentimes the absolute difference between a loyal customer and a lost one.</p>
+
+<p>That is why the way you treat your employees will always shape the way customers experience your business, and ultimately the customer retention metrics.</p>
+
+<p>So, if your employees are the true engine of your business, the question for business leaders now becomes; <em>“If your employees are the face and engine of your business, are you treating them like they matter?”</em></p>
+
+<p>Ultimately, customer experience is a mirror. If you don't like what you see on the outside, it’s time to fix what’s broken on the inside.</p>`
         }
-
       ]
     },
 
+    {
+      key: 'strategy',
+      title: 'Strategy',
+      desc: 'The choices, and trade-offs that determine where a business goes and how it wins.',
+      essays: [
+        {
+          title: 'Your Next Breakthrough Isn\'t in the Boardroom',
+          blurb: 'What a simple brainstorming exercise can teach about where true business innovation lives.',
+          url: '#',
+          content: `<p>A few years ago, I was driving one of our interns home after another long day at the office. We had just come out of what felt like the fifth strategy meeting that week. Everything else in the business seemed to be moving in the right direction—or at least felt fixable—except customer satisfaction metrics. They had been declining steadily, and no one could explain why.</p>
+
+<p>The intern had spent most of the afternoon quietly taking notes from the corner of the boardroom, speaking only when someone asked him to pull up a report or hand over a document.</p>
+
+<p>As we drove through the heavy evening traffic, I found myself reflecting aloud on the day’s discussions. I couldn’t hide my frustration. We had spent weeks trying to figure out what was driving the decline, and management was even considering bringing in an external consulting firm to help identify what we were missing. Despite countless hours in those strategy meetings, we still had no meaningful answers.</p>
+
+<p>The intern listened quietly for most of the journey. He looked visibly exhausted after sitting through hours of back-to-back meetings.</p>
+
+<p>Then, as he stared out of the window, he finally broke the silence.</p>
+
+<p><em>“If the problem was the customer experience, why were we spending all our time asking people who rarely dealt with customers instead of the people who interacted with them every day?”</em></p>
+
+<p>For the first time in weeks, I felt as though we had been looking for answers in the wrong place.</p>
+
+<p>His question was disarmingly simple, yet it exposed a blind spot none of us had noticed. We were trying to understand the customer by imagining their experience, while hundreds of colleagues across our branches were living that experience every day.</p>
+
+<p>The following day, I shared the intern’s observation during our strategy meeting and the room fell quiet. It instantly changed the direction of the discussion and led to one of the most effective brainstorming exercises I have ever been part of codenamed: <em>“Burst the Balloon and Blow a New One.”</em></p>
+
+<p>The idea was extremely straightforward: identify a specific policy or process that was frustrating customers, <em>“burst it”</em> by explaining why it no longer served them well, and then <em>“blow a new one”</em> by proposing a practical, common-sense alternative that fixes the problem without exposing the company to unacceptable levels of financial or legal risk.</p>
+
+<p>Within a few days, the response from the staff exceeded everyone’s expectations. They highlighted policies that created unnecessary delays, cumbersome procedures that frustrated customers, outdated processes that no longer served their original purpose, and internal practices that made life harder for customers without making the company any safer.</p>
+
+<p>More importantly, they didn’t just identify problems. They came with simple, practical solutions.</p>
+
+<p>Management reviewed every single suggestion that poured in from the branches. The ideas that were practical, customer-friendly, and safe were quickly refined, tested in a few select locations, and permanently incorporated into our daily operating policies.</p>
+
+<p>The results were outstanding. Within months, customer satisfaction scores improved significantly. The company went on to win several industry customer service awards, and the benefits showed up clearly in the financial results. Happier, more loyal customers naturally meant better business performance.</p>
+
+<p>Looking back, what made that exercise so powerful wasn’t the brainstorming itself. It was the realization that the people with the best answers were rarely the ones sitting in the boardroom. They were the employees speaking to customers every day.</p>
+
+<p>Too often, leadership teams assume innovation begins in the boardroom. When a problem emerges, they gather the most senior people in the organization and try to think their way to a solution. Yet the further they move from the frontline, the easier it becomes to rely on assumptions instead of lived experience.</p>
+
+<p>The people answering customer calls, resolving complaints, and serving clients every day don’t just understand the business—they experience it.</p>
+
+<p>That doesn’t mean every frontline suggestion should become policy. Leadership still has the task to balance customer experience with compliance, risk, and long-term strategy. But executive judgment is only as good as the information on which it is based.</p>
+
+<p>The smartest organizations understand this. They build systems that allow frontline insights to move upward, ensuring that the best ideas can reach the people responsible for major decision-making.</p>
+
+<p>The exercise wasn’t successful because it was an extraordinary brainstorming technique. It succeeded because it asked the right people the right question.</p>
+
+<p>If your organization is trying to improve customer experience, solve persistent operational problems, or uncover its next opportunity for growth, don’t begin by asking the people furthest from the problem.</p>
+
+<p>Start with the people living it every day.</p>`
+        },
+        {
+          title: 'Service Quality Over Familiarity: Why Goodwill Is a Volatile Business Strategy',
+          blurb: 'Goodwill may bring in customers, but only consistent service quality gives them a reason to stay.',
+          url: '#',
+          content: `<p>A few days ago, I learned something simple, but very uncomfortable; that loyalty should never come at the expense of service quality.</p>
+
+<p>For a long time, I’ve been shaving my hair at a friend’s barbershop. Not because it was the best in the neighbourhood—far from it, to be honest—but because I believed in supporting my people. And I wasn’t alone. Many of his reccuring customers kept showing up for the same reasons: loyalty, friendship, and goodwill.</p>
+
+<p>At first, it felt like the right thing to do, but over time, a subtle operational drag crept in and something began to change. Slowly, familiarity set in, his service standards started deteriorating, and what was once <em>not the best, but manageable</em> became frustratingly painful.</p>
+
+<p>His machines would break and stay broken for weeks, but instead of fixing or replacing them promptly to maintain good customer service, we were expected to tolerate, and <em>understand the situation.</em> But the truth is, understanding doesn’t fix poor customer service; it only quietly builds frustration.</p>
+
+<p>In my case for example, I prefer a clean shaolin cut—the smooth, polished look that requires the right shaver. His smooth shaver broke about a couple of months back, and, to this day, hasn’t been fixed or replaced. Instead, I’m expected to make do with regular clippers that are not designed to shave my preferred haircut.</p>
+
+<p>And his unspoken expectation was always the same: <em>“You’re my guy, you’ve got to understand the situation.”</em></p>
+
+<p>And that is exactly where the systemic problems begin, because in business, loyalty, when taken for granted, slowly turns into operational entitlement.</p>
+
+<p>Out of sheer frustration, I recently tried another barbershop nearby. It costs nearly twice as much, and I’ll admit, I’d hesitated going in. But from the moment I walked in, the difference was clear as day and night. The equipment was clean, everything was in excellent working condition, and the service was delivered with a level of urgency and respect that made it clear the customer mattered.</p>
+
+<p>There were no excuses or <em>understandings,</em> but only professionalism. And when I walked out, it didn’t feel like I had simply paid for just a haircut. It felt like I had paid for value. Value for my money.</p>
+
+<p>That experience forced me to make a decision I had been avoiding for a long time. That I will not return to my friend’s barbershop out of obligation, not because I don’t want to support him—but because support should not mean settling for less.</p>
+
+<p>The truth many business leaders or founders avoid is that while goodwill and personal networks might drive initial customer acquisition, long-term customer retention depends entirely on the consistent quality of service. The moment your operational standards drop, that initial goodwill fades with it.</p>
+
+<p>So, if your business continuity relies heavily on familiarity, you begin to train people to accept less, until one day when they choose better. And the thing about corporate clients or everyday consumers is, most will switch to an alternative without an announcement, but quietly exit to avoid the burden and drama of giving feedback.</p>
+
+<p>As a business owner, giving your customer a reason to try a competitor’s product or service is a critical structural liability—because once they experience a frictionless alternative, you’ll have already lost ground, and may never see them again.</p>
+
+<p>On the other hand, for us as customers, we also need to be entirely honest with ourselves. Too often, we disguise tolerance as loyalty, when in reality, we are enabling poor standards to thrive. We tell ourselves we are being supportive, but by accepting operational friction, we may be holding people back from improving.</p>
+
+<p>Sometimes, the most genuine form of support is honest feedback, or even walking away entirely. Because standards do not rise in comfortable environments; they rise when market pressure forces an organization to do better.</p>
+
+<p>I still believe in supporting local businesses and friends, that hasn’t changed, but I no longer believe in doing so blindly. Support must be earned through consistent execution, respected through operational discipline, and anything less puts the business at risk. In business, goodwill and personal networks may bring customers in, but only high quality service keeps them coming back.</p>
+
+<p>Where have you recently chosen service quality over loyalty, where are you still settling for less, or more importantly, where in your own business are you still expecting your customers to settle for less?</p>`
+        }
+      ]
+    },
 
     {
       key: 'influence',
-
       title: 'Influence',
-
       desc: 'How ideas, reputation, and credibility shape what people believe and do.',
-
       essays: [
-
         {
-          title: 'The Case Against Thought Leadership (As Usual)',
+          title: 'The Frictionless Frontier: Why Charisma Is No Longer Enough to Close Deals',
+          blurb: 'In a market where buyers research, compare, and decide on their own terms, businesses must remove every form of buyer friction.',
+          url: '#',
+          content: `<p>A couple of days back, I met with Mwangi, an old colleague, at an upscale restaurant in Upper Hill, Nairobi. The meeting wasn’t a casual social catch-up; it was strategic. He had called me earlier that week sounding unusually unsettled by a commercial problem inside his organization that no amount of hard work seemed to fix.</p>
 
-          blurb: 'Most executive content sounds the same because it\'s built to.',
+<p>As I walked into the restaurant, I spotted him sitting near a window overlooking the city, his fingers drumming a restless rhythm against a leather-bound notebook. Mwangi didn’t even notice the ambient noise around us; his eyes were glued to a troubling line chart glowing on his laptop screen.</p>
 
-          url: '#'
-        },
+<p>After a brief chat, he turned the laptop screen toward me. The issue was immediately clear: his customer acquisition costs were climbing sky-high, while his conversion rates had been completely flat for three consecutive years. The math simply wasn’t adding up.</p>
 
-        {
-          title: 'Six Sentences on Hiring Slowly',
+<p>Mwangi explained that they were running their classic playbook with absolute discipline, yet the results no longer reflected the effort being invested. His account executives were constantly on the road, taking clients out to dinners, maximizing face-to-face meetings, and following up aggressively. A decade earlier, that kind of personal relationship-building would almost certainly have translated into market share. Now, despite doing everything the way they always had, opportunities seemed to stall before they could even secure a second meeting.</p>
 
-          blurb: 'Why the best operators still wait for the right yes.',
+<p>As he spoke, I looked out the window at the evening gridlock on the avenue below—a vast sea of cars trapped in the heat, burning fuel without gaining any forward momentum.</p>
 
-          url: '#'
-        },
+<p>As the conversation progressed, it became clear that the breakdown wasn’t conversational; it was architectural. The problem wasn’t a lack of effort, activity, or sales motivation. It was the assumption that buyers still wanted to be sold to the way they had been in the past.</p>
 
-        {
-          title: 'The Meeting That Should Have Been an Email',
+<p>The business landscape has fundamentally changed, and today’s prospects place far less value on being courted, persuaded, or managed by a charismatic salesperson than on accessing information, evaluating options independently, and buying on their own terms. They expect information on demand, frictionless experiences, and solutions delivered with speed and precision. The era when relationships alone could protect a business had quietly come to an end.</p>
 
-          blurb: 'A breakdown of when synchronous time actually earns its keep.',
+<p>Our conversation pointed to a massive, global shift. Historically, doing business in growing economic hubs relied heavily on personal networks, handshake deals, and aggressive sales teams chasing leads down. Companies poured money into hiring charismatic people who could close deals through sheer persistence.</p>
 
-          url: '#'
+<p>But today, that old playbook is breaking down piece by piece. Modern buyers now do all their homework long before they ever talk to a salesperson. They research your digital footprint, compare your prices with alternatives, read independent reviews, and map out their own purchasing path. When a modern, self-educated buyer meets an old-school, relationship-heavy sales process, immense friction occurs. The result? Deals fall through, profit margins shrink, and the cost of winning a single customer becomes unsustainably expensive.</p>
+
+<p>When a company relies too much on old-school persuasion instead of modern infrastructure, three distinct structural liabilities emerge that drag the business down.</p>
+
+<p>The first is <strong><em>The Charisma Dependency Bottleneck</em></strong>. If your revenue depends entirely on having a few superstar salespeople rather than a repeatable system, your business is, and will always, be in danger. If those star players get poached by a competitor, your pipeline dries up instantly, and your clients end up getting a completely different, unpredictable experience.</p>
+
+<p>The second liability is <strong><em>Information Friction and Latency</em></strong>. If a customer has to wait hours for a salesperson to email them basic information like pricing tiers or setup timelines, you have a severe latency problem. In a fast-moving world, response latency drives buyers straight into the arms of automated competitors who give them answers instantly. Every extra hour a client waits for a response drives up your costs and slows down your momentum. In business, slow communication acts as a direct margin compression event.</p>
+
+<p>The third issue stems from <strong><em>Transactional Chokepoints</em></strong>. Forcing modern, digital-first buyers to deal with old-fashioned, manual payment methods creates massive cognitive friction. It frustrates the buyer and ruins customer retention before the relationship even begins. It creates a painful loop: slow personal pitching leads to communication latency, which creates buyer friction, and ends in a frozen pipeline.</p>
+
+<p>To win the market today, business leaders must dismantle old sales habits and replace them with a self-sustaining commercial architecture. This doesn’t mean firing your team; it means balancing smart technology with strategic human skills across three simple phases.</p>
+
+<p>First, you must <strong><em>Democratize Information</em></strong>. Put your pricing, technical details, and case studies out in the open. Because modern buyers do most of their research before talking to you, your digital platform must be an undeniable source of truth. Don’t hide your pricing or mask your capabilities. By removing this initial friction, you allow prospective buyers to do most of their research and evaluation completely on their own terms. Being radically transparent immediately filters out the wrong clients and builds instant credibility with the right ones.</p>
+
+<p>Second, you must <strong><em>Engineer Frictionless Transactions</em></strong>. Make buying from you incredibly easy. Today, convenience matters just as much as price. If a client has to send four emails and hop on three phone calls just to get a contract or figure out how to pay you, your sales model is broken. Ruthlessly clean up the pipeline: use digital contracts, automated response matrices to deliver data within minutes, integrate seamless digital payment options, and use smart onboarding systems to remove every single operational drag from your pipeline after the sale.</p>
+
+<p>Third, you must <strong><em>Optimize for Analytical Trust</em></strong>. Shift your sales team away from aggressive pitching and turn them into trusted consultants who solve actual problems. This positions your business as a highly efficient utility rather than just another vendor trying to make a quick buck.</p>
+
+<p>Moving to an efficient, system-driven sales model doesn’t mean getting rid of human talent—it means upgrading their role. Your sales team needs to stop acting as informational gatekeepers and start operating as strategic consultants. The highest-performing organizations increasingly win because of the strength of their systems, not just the talent of their people. True business growth is a function of infrastructure quality, not persuasive talent density.</p>
+
+<p>Their job is no longer to convince or pressure the client. Their job is to design the right solution, speed up implementation, and guarantee long-term customer success. This transitions your sales force from a high-cost operational variable into an elite advisory asset.</p>
+
+<p>The future of business belongs to organizations that successfully combine human insight with smooth, highly efficient corporate execution. You can no longer scale a company on the backs of a few charismatic individuals, no way; you must scale through predictable, frictionless systems.</p>
+
+<p>In the previous decades, market leaders were defined by their ability to persuade. Today, they are defined by their ability to remove friction entirely and the future belongs to those who transform trust from a human activity into a scalable system.</p>`
         }
-
-      ]
-    },
-
-
-    {
-      key: 'mindset',
-
-      title: 'Mindset',
-
-      desc: 'The beliefs everyone takes for granted — and the ones worth challenging.',
-
-      essays: [
-
-        {
-          title: 'Ambition Without a Deadline Is a Hobby',
-
-          blurb: 'On the difference between wanting something and building toward it.',
-
-          url: '#'
-        },
-
-        {
-          title: 'The Comfort of Staying Busy',
-
-          blurb: 'Why activity so often substitutes for progress.',
-
-          url: '#'
-        },
-
-        {
-          title: 'What Rebuilding Taught Me About Certainty',
-
-          blurb: 'Lessons from starting over with almost nothing.',
-
-          url: '#'
-        },
-
-        {
-          title: 'Every Exit Is Also an Entrance',
-
-          blurb: 'Reframing endings as the start of the next real chapter.',
-
-          url: '#'
-        },
-
-        {
-          title: 'The Discipline of Not Reacting',
-
-          blurb: 'A short essay on pace, patience, and the leaders who keep both.',
-
-          url: '#'
-        },
-
-        {
-          title: 'Nobody Is Coming to Validate the Leap',
-
-          blurb: 'On making the call before anyone else agrees with it.',
-
-          url: '#'
-        }
-
       ]
     }
-
   ];
-
 
   /* Add stable slugs/IDs without changing the existing essay data.
      Future essays may also provide their own `slug` and `content`. */
@@ -3437,570 +3563,101 @@
   });
 
 
+
+
+
+  const essayList = document.getElementById('essayList');
+  const essayPagination = document.getElementById('essayPagination');
+
+  const allEssays = ESSAY_DATA.flatMap(category => category.essays);
+  const essayCategoryOverrides = {
+    "The Founder’s Trap: Is Your Business a Path to Freedom or a Gilded Cage?": 'Leadership',
+    "Productivity Is a Scam: Why Systemized Laziness Wins": 'Mindset',
+    "The Customer Isn’t King—Your Employees Are. Are You Treating Them Like It?": 'Leadership',
+    "Your Next Breakthrough Isn't in the Boardroom": 'Leadership',
+    "Service Quality Over Familiarity: Why Goodwill Is a Volatile Business Strategy": 'Strategy',
+    "The Frictionless Frontier: Why Charisma Is No Longer Enough to Close Deals": 'Influence'
+  };
+  allEssays.forEach(essay => {
+    if (essayCategoryOverrides[essay.title]) essay.category = essayCategoryOverrides[essay.title];
+  });
   const PAGE_SIZE = 5;
-
-
-  const catList =
-    document.getElementById(
-      'catList'
-    );
-
-
-  ESSAY_DATA.forEach(
-    (cat, idx) => {
-
-      const li =
-        document.createElement(
-          'li'
-        );
-
-
-      li.className =
-        'cat-item';
-
-
-      li.innerHTML = `
-
-        <button
-          class="cat-trigger"
-          aria-expanded="false"
-        >
-
-          <div class="cat-text">
-
-            <h3>
-              ${cat.title}
-            </h3>
-
-            <p>
-              ${cat.desc}
-            </p>
-
-          </div>
-
-
-          <div class="cat-meta">
-
-            <span class="count">
-              ${cat.essays.length}
-              ${cat.essays.length === 1 ? 'essay' : 'essays'}
-            </span>
-
-
-            <svg
-              class="chevron"
-              viewBox="0 0 24 24"
-            >
-
-              <path
-                d="M12 5v14M5 12h14"
-              />
-
-            </svg>
-
-          </div>
-
-        </button>
-
-
-        <div class="cat-panel">
-
-          <div class="cat-panel-inner">
-
-            <ul
-              class="essay-list"
-              id="essayList-${idx}"
-            ></ul>
-
-
-            <div
-              class="pagination"
-              id="pagination-${idx}"
-            ></div>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      catList.appendChild(
-        li
-      );
-
-
-      let currentPage = 1;
-
-
-      const totalPages =
-        Math.ceil(
-          cat.essays.length /
-          PAGE_SIZE
-        );
-
-
-      function renderPage(page, scrollToTop) {
-
-        currentPage =
-          page;
-
-
-        const listEl =
-          document.getElementById(
-            `essayList-${idx}`
-          );
-
-
-        const start =
-          (page - 1) *
-          PAGE_SIZE;
-
-
-        const pageItems =
-          cat.essays.slice(
-            start,
-            start + PAGE_SIZE
-          );
-
-
-        listEl.innerHTML =
-          pageItems.map(
-            (essay, i) => `
-
-              <li class="essay">
-
-                <span class="e-num">
-
-                  ${String(
-                    start + i + 1
-                  ).padStart(
-                    2,
-                    '0'
-                  )}
-
-                </span>
-
-
-                <div class="e-body">
-
-                  <h4>
-                    <a class="essay-link" data-essay-slug="${essay.slug}" href="#essay/${essay.slug}">${essay.title}</a>
-                  </h4>
-
-
-                  <p>
-                    ${essay.blurb}
-                  </p>
-
-
-                  <a
-                    class="e-link essay-link"
-                    data-essay-slug="${essay.slug}"
-                    href="#essay/${essay.slug}"
-                  >
-
-                    Read essay →
-
-                  </a>
-
-                </div>
-
-              </li>
-
-            `
-          ).join('');
-
-
-        renderPagination();
-
-
-        const panel =
-          li.querySelector(
-            '.cat-panel'
-          );
-
-
-        if (
-          li.classList.contains(
-            'open'
-          )
-        ) {
-
-          panel.style.maxHeight =
-            panel.scrollHeight +
-            'px';
-
-        }
-
-
-        // On an actual pagination click (Next / Previous / a page
-        // number), bring this category's header/tab into view at
-        // the top of the viewport — not the top of the whole page,
-        // and not another category. Anchoring on the header (rather
-        // than the essay list itself) keeps the category name
-        // visible together with the newly loaded essays below it.
-        // scroll-margin-top on .cat-trigger keeps it clear of the
-        // sticky nav bar.
-        if (scrollToTop) {
-
-          const triggerEl =
-            li.querySelector(
-              '.cat-trigger'
-            );
-
-          triggerEl.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-        }
-
-      }
-
-
-      function renderPagination() {
-
-        const pagEl =
-          document.getElementById(
-            `pagination-${idx}`
-          );
-
-
-        if (
-          totalPages <= 1
-        ) {
-
-          pagEl.innerHTML =
-            '';
-
-          return;
-
-        }
-
-
-        let pages = [];
-
-
-        const p =
-          currentPage;
-
-
-        const tp =
-          totalPages;
-
-
-        if (
-          tp <= 7
-        ) {
-
-          for (
-            let i = 1;
-            i <= tp;
-            i++
-          ) {
-
-            pages.push(
-              i
-            );
-
-          }
-
-        } else {
-
-          pages.push(
-            1
-          );
-
-
-          if (
-            p > 3
-          ) {
-
-            pages.push(
-              '…'
-            );
-
-          }
-
-
-          for (
-            let i = Math.max(
-              2,
-              p - 1
-            );
-
-            i <= Math.min(
-              tp - 1,
-              p + 1
-            );
-
-            i++
-          ) {
-
-            pages.push(
-              i
-            );
-
-          }
-
-
-          if (
-            p < tp - 2
-          ) {
-
-            pages.push(
-              '…'
-            );
-
-          }
-
-
-          pages.push(
-            tp
-          );
-
-        }
-
-
-        let html = `
-
-          <button
-            class="pg-btn"
-            data-nav="prev"
-            ${p === 1 ? 'disabled' : ''}
-          >
-
-            ← Previous
-
-          </button>
-
-        `;
-
-
-        pages.forEach(
-          pg => {
-
-            if (
-              pg === '…'
-            ) {
-
-              html += `
-
-                <span class="pg-ellipsis">
-                  …
-                </span>
-
-              `;
-
-            } else {
-
-              html += `
-
-                <button
-                  class="pg-num ${
-                    pg === p
-                      ? 'active'
-                      : ''
-                  }"
-                  data-page="${pg}"
-                >
-
-                  ${pg}
-
-                </button>
-
-              `;
-
-            }
-
-          }
-        );
-
-
-        html += `
-
-          <button
-            class="pg-btn"
-            data-nav="next"
-            ${p === tp ? 'disabled' : ''}
-          >
-
-            Next →
-
-          </button>
-
-        `;
-
-
-        pagEl.innerHTML =
-          html;
-
-
-        pagEl
-          .querySelectorAll(
-            '[data-page]'
-          )
-          .forEach(
-            btn => {
-
-              btn.addEventListener(
-                'click',
-                () =>
-                  renderPage(
-                    parseInt(
-                      btn.dataset.page
-                    ),
-                    true
-                  )
-              );
-
-            }
-          );
-
-
-        const prevBtn =
-          pagEl.querySelector(
-            '[data-nav="prev"]'
-          );
-
-
-        const nextBtn =
-          pagEl.querySelector(
-            '[data-nav="next"]'
-          );
-
-
-        if (
-          prevBtn
-        ) {
-
-          prevBtn.addEventListener(
-            'click',
-            () => {
-
-              if (
-                currentPage > 1
-              ) {
-
-                renderPage(
-                  currentPage - 1,
-                  true
-                );
-
-              }
-
-            }
-          );
-
-        }
-
-
-        if (
-          nextBtn
-        ) {
-
-          nextBtn.addEventListener(
-            'click',
-            () => {
-
-              if (
-                currentPage < totalPages
-              ) {
-
-                renderPage(
-                  currentPage + 1,
-                  true
-                );
-
-              }
-
-            }
-          );
-
-        }
-
-      }
-
-
-      renderPage(
-        1
-      );
-
-
-      const trigger =
-        li.querySelector(
-          '.cat-trigger'
-        );
-
-
-      const panel =
-        li.querySelector(
-          '.cat-panel'
-        );
-
-
-      trigger.addEventListener(
-        'click',
-        () => {
-
-          const isOpen =
-            li.classList.contains(
-              'open'
-            );
-
-
-          closeAnyOpenAccordion(li);
-
-
-          if (
-            isOpen
-          ) {
-
-            li.classList.remove(
-              'open'
-            );
-
-
-            trigger.setAttribute(
-              'aria-expanded',
-              'false'
-            );
-
-
-            panel.style.maxHeight =
-              null;
-
-          } else {
-
-            li.classList.add(
-              'open'
-            );
-
-
-            trigger.setAttribute(
-              'aria-expanded',
-              'true'
-            );
-
-
-            panel.style.maxHeight =
-              panel.scrollHeight +
-              'px';
-
-          }
-
-
-          // Hold this category's screen position steady for the
-          // length of the collapse/expand transition.
-          lockViewportTo(li, 600);
-
-        }
-      );
-
+  let currentEssayPage = 1;
+  const totalEssayPages = Math.ceil(allEssays.length / PAGE_SIZE);
+
+  function renderEssayPagination() {
+    if (totalEssayPages <= 1) {
+      essayPagination.innerHTML = '';
+      return;
     }
-  );
 
+    const pageNumbers = [];
+    for (let page = 1; page <= totalEssayPages; page++) {
+      pageNumbers.push(`
+        <button class="pg-num ${page === currentEssayPage ? 'active' : ''}" type="button" data-page="${page}" aria-label="Page ${page}" ${page === currentEssayPage ? 'aria-current="page"' : ''}>${page}</button>
+      `);
+    }
+
+    essayPagination.innerHTML = `
+      <button class="pg-btn" type="button" data-page="${currentEssayPage - 1}" ${currentEssayPage === 1 ? 'disabled' : ''}>← Previous</button>
+      ${pageNumbers.join('')}
+      <button class="pg-btn" type="button" data-page="${currentEssayPage + 1}" ${currentEssayPage === totalEssayPages ? 'disabled' : ''}>Next →</button>
+    `;
+  }
+
+  function renderEssayPage(page, scrollToTop = false) {
+    currentEssayPage = Math.min(totalEssayPages, Math.max(1, page));
+
+    const essaysIntro = document.querySelector('.essays-intro');
+    if (essaysIntro) essaysIntro.style.display = currentEssayPage === 1 ? '' : 'none';
+
+    const start = (currentEssayPage - 1) * PAGE_SIZE;
+    const pageItems = allEssays.slice(start, start + PAGE_SIZE);
+
+    essayList.innerHTML = pageItems.map((essay, index) => `
+      <li class="essay" data-essay-slug="${essay.slug}">
+        <div class="e-body">
+          <h4>
+            <a class="essay-link" data-essay-slug="${essay.slug}" href="#essay/${essay.slug}">${essay.title}</a>
+          </h4>
+          <p>${essay.blurb}</p>
+          <a class="e-link essay-link" data-essay-slug="${essay.slug}" href="#essay/${essay.slug}">Read essay →</a>
+        </div>
+      </li>
+    `).join('');
+
+    renderEssayPagination();
+
+    if (scrollToTop) {
+      const essaysSection = document.getElementById('essays');
+      if (essaysSection) essaysSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  }
+
+  essayPagination.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-page]');
+    if (!button || button.disabled) return;
+    renderEssayPage(Number(button.dataset.page), true);
+  });
+
+  essayList.addEventListener('click', (event) => {
+    const link = event.target.closest('.essay-link');
+    if (link) {
+      event.preventDefault();
+      const essay = findEssayBySlug(link.dataset.essaySlug);
+      if (!essay) return;
+      openEssay(essay, true);
+      return;
+    }
+
+    const card = event.target.closest('.essays-feed .essay');
+    if (!card) return;
+    const essay = findEssayBySlug(card.dataset.essaySlug);
+    if (!essay) return;
+    openEssay(essay, true);
+  });
+
+  renderEssayPage(1);
 
   /* =========================================================
      SINGLE-PAGE ESSAY READER + HASH ROUTING
@@ -4051,6 +3708,22 @@
     const headerHeight = essayReaderHeader.getBoundingClientRect().height;
     document.documentElement.style.setProperty('--essay-nav-height', `${navHeight}px`);
     document.documentElement.style.setProperty('--essay-header-height', `${headerHeight}px`);
+  }
+
+  function alignEssayHeaderElements() {
+    if (!essayReaderTitle || !essayReaderBack || !essayReaderCategory) return;
+
+    essayReaderBack.style.transform = '';
+    essayReaderCategory.style.transform = '';
+
+    if (window.innerWidth < 900 || !document.body.classList.contains('essay-reading')) return;
+
+    const targetLeft = essayReaderTitle.getBoundingClientRect().left;
+    const backLeft = essayReaderBack.getBoundingClientRect().left;
+    const categoryLeft = essayReaderCategory.getBoundingClientRect().left;
+
+    essayReaderBack.style.transform = `translateX(${targetLeft - backLeft}px)`;
+    essayReaderCategory.style.transform = `translateX(${targetLeft - categoryLeft}px)`;
   }
 
   function setShareLinks(essay, directUrl) {
@@ -4115,12 +3788,67 @@
     essayShareTrigger.setAttribute('aria-expanded', 'false');
   }
 
-  function renderEssaySidebar(essay) {
-    const takeaways = Array.isArray(essay.takeaways) && essay.takeaways.length
-      ? essay.takeaways
-      : (essay.blurb ? [essay.blurb] : ['A concise perspective on the central idea of this essay.']);
 
-    essayTakeaways.innerHTML = takeaways.slice(0, 4).map(item => `<li>${item}</li>`).join('');
+
+  const essayTakeawayContent = {
+    "The Founder’s Trap: Is Your Business a Path to Freedom or a Gilded Cage?": [
+      '<strong>Core idea:</strong> <em>Build a business that gives you freedom—not a job that owns you.</em>',
+      'A business that cannot operate without its founder is not truly scalable.',
+      'Founders must transition from doing everything themselves to building systems and empowering teams.',
+      'Documentation and clear responsibilities create continuity and reduce founder dependency.',
+      'Delegation gives founders the time to focus on top-level management duties of strategy, growth, and the future.',
+      'The real measure of a business is whether it can thrive when the founder steps away.'
+    ],
+    "Productivity Is a Scam: Why Systemized Laziness Wins": [
+      '<strong>Core idea:</strong> <em>The goal isn\'t to work harder forever; it\'s to build systems that make unnecessary work disappear.</em>',
+      'Being busy does not necessarily mean being productive.',
+      'The highest-leverage leaders focus on eliminating unnecessary work rather than doing more of it.',
+      'Systems, automation, and repeatable processes outperform constant individual effort as a business scales.',
+      'Organizations often reward heroic problem-solving instead of preventing problems from occurring.',
+      'Leaders should protect their cognitive bandwidth for decisions that genuinely require their attention.'
+    ],
+    "The Customer Isn’t King—Your Employees Are. Are You Treating Them Like It?": [
+      '<strong>Core idea:</strong> <em>If you want better customer experiences, start by taking better care of the people who create them.</em>',
+      'Customers experience a business primarily through its employees.',
+      'Employee treatment directly influences customer experience.',
+      'Empowered, respected employees are more likely to deliver exceptional service.',
+      'Micromanagement, burnout, and poor internal culture eventually become customer-facing problems.',
+      'Improving customer experience therefore starts by improving the employee experience.'
+    ],
+    "Your Next Breakthrough Isn't in the Boardroom": [
+      '<strong>Core idea:</strong> <em>If you want to solve a problem, start by asking the people who experience it every day.</em>',
+      'The people closest to a problem often have the best insight into how to solve it.',
+      'Frontline employees possess valuable knowledge that senior leadership can easily overlook.',
+      'Innovation doesn\'t always require sophisticated strategies; sometimes it starts with asking the right people the right question.',
+      'Organizations need systems that allow frontline insights to reach decision-makers.',
+      'Leadership still provides judgment and direction, but better decisions require better information.'
+    ],
+    "Service Quality Over Familiarity: Why Goodwill Is a Volatile Business Strategy": [
+      '<strong>Core idea:</strong> <em>Goodwill may bring customers in, but consistent value gives them a reason to stay.</em>',
+      'Personal relationships and goodwill can attract customers, but they cannot permanently compensate for poor service.',
+      'Businesses become vulnerable when they take loyal customers\' tolerance for granted.',
+      'Customers may quietly leave when a better alternative becomes available.',
+      'Consistent execution and value are more important to retention than familiarity.',
+      'Sometimes genuine support means giving honest feedback—or refusing to accept poor standards.'
+    ],
+    "The Frictionless Frontier: Why Charisma Is No Longer Enough to Close Deals": [
+      '<strong>Core idea:</strong> <em>The modern competitive advantage isn\'t simply persuading customers; it\'s making it effortless for them to buy.</em>',
+      'Modern buyers increasingly research, compare, and evaluate businesses before engaging with salespeople.',
+      'Businesses become vulnerable when sales depend too heavily on individual charismatic performers.',
+      'Slow information, cumbersome processes, and difficult transactions create unnecessary buyer friction.',
+      'Companies should make information accessible and the buying process fast, transparent, and easy.',
+      'Salespeople should evolve from information gatekeepers into strategic consultants.',
+      'Sustainable growth increasingly comes from commercial infrastructure rather than individual persuasion.'
+    ]
+  };
+
+  function renderEssaySidebar(essay) {
+    const takeaways = essayTakeawayContent[essay.title] ||
+      (Array.isArray(essay.takeaways) && essay.takeaways.length
+        ? essay.takeaways
+        : (essay.blurb ? [essay.blurb] : ['A concise perspective on the central idea of this essay.']));
+
+    essayTakeaways.innerHTML = takeaways.map((item, index) => `<li${index === 0 && essayTakeawayContent[essay.title] ? ' class="essay-takeaway-core"' : ''}>${item}</li>`).join('');
 
     const related = [];
     ESSAY_DATA.forEach(category => {
@@ -4138,7 +3866,6 @@
 
     essayRelated.innerHTML = related.map((item, index) => `
       <li class="essay">
-        <span class="e-num">${String(index + 1).padStart(2, '0')}</span>
         <div class="e-body">
           <h4><a class="essay-link" data-essay-slug="${item.slug}" href="#essay/${item.slug}">${item.title}</a></h4>
         </div>
@@ -4173,7 +3900,7 @@
 
     const author = essay.author || 'Denóir—The Maverick';
     const readTime = essay.readTime || '3 min read';
-    essayReaderMeta.innerHTML = `<span class="meta-by">By</span> <span class="meta-author">${author}</span><span class="meta-read-time">${readTime}</span>`;
+    essayReaderMeta.innerHTML = `<span class="meta-by">By</span> <span class="meta-author">${author}</span><span class="meta-separator" aria-hidden="true">·</span><span class="meta-read-time">${readTime}</span>`;
 
     if (essay.content && essay.content.trim()) {
       essayReaderContent.innerHTML = essay.content;
@@ -4196,6 +3923,7 @@
 
     requestAnimationFrame(() => {
       setReadingHeaderMetrics();
+      alignEssayHeaderElements();
       updateEssayProgress();
     });
   }
@@ -4240,16 +3968,6 @@
     if (document.body.classList.contains('essay-reading')) closeEssay(false);
   }
 
-  catList.addEventListener('click', (event) => {
-    const link = event.target.closest('.essay-link');
-    if (!link) return;
-    event.preventDefault();
-    const essay = findEssayBySlug(link.dataset.essaySlug);
-    if (!essay) return;
-    openEssay(essay, true);
-  });
-
-
   essayRelated.addEventListener('click', (event) => {
     const link = event.target.closest('.essay-link');
     if (!link) return;
@@ -4288,6 +4006,7 @@
   window.addEventListener('scroll', updateEssayProgress, { passive: true });
   window.addEventListener('resize', () => {
     setReadingHeaderMetrics();
+    alignEssayHeaderElements();
     updateEssayProgress();
   });
   window.addEventListener('hashchange', handleEssayRoute);

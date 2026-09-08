@@ -1949,14 +1949,7 @@
     font-style: italic;
   }
 
-  .essay-reader-meta {
-    max-width: 100%;
-    margin: 0;
-    color: var(--muted);
-    font-family: Georgia, serif;
-    font-size: 17px;
-    font-style: normal;
-  }
+  .essay-reader-meta { font-family: Georgia, 'Times New Roman', serif; white-space: nowrap; display: flex; align-items: center; justify-content: flex-start; }
 
   .essay-reader-meta .meta-by {
     font-style: italic;
@@ -1968,8 +1961,17 @@
   }
 
   .essay-reader-meta .meta-read-time {
-    margin-left: 42px;
+    margin-left: 0;
+    justify-self: start;
   }
+
+  .essay-reader-meta .meta-by,
+  .essay-reader-meta .meta-author {
+    justify-self: end;
+  }
+
+  .essay-reader-meta { white-space: nowrap; }
+        .essay-reader-meta .meta-separator { margin: 0 0.7em; position: static; }
 
   .essay-reader-content {
     max-width: 100%;
@@ -2018,6 +2020,43 @@
     font-style: italic;
   }
 
+  .essay-author-closing {
+    margin-top: calc(1.35em * 3.75);
+    padding-left: 18px;
+    border-left: 2px solid var(--accent);
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-style: normal;
+  }
+
+  .essay-author-closing p {
+    margin: 0;
+  }
+
+  .essay-author-cheers {
+    margin-bottom: 6px !important;
+  }
+
+  .essay-author-signature {
+    color: var(--accent);
+    font-style: normal;
+    margin-bottom: 10px !important;
+  }
+
+  .essay-author-follow {
+    color: var(--text);
+    font-style: italic;
+  }
+
+  .essay-author-follow a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .essay-author-follow a:hover {
+    text-decoration: underline;
+  }
+
   .essay-reader-sidebar {
     min-width: 0;
     align-self: start;
@@ -2036,7 +2075,7 @@
     color: var(--ink);
   }
 
-  .meta-separator { margin: 0 0.7em; position: relative; left: 21px; }
+  .meta-separator { margin: 0 0.7em; position: static; }
 
   .essay-takeaways {
     list-style: none;
@@ -2159,7 +2198,11 @@
   }
 
 
-</style>
+@media (max-width: 420px) {
+            .essay-reader-meta { column-gap: 6px; font-size: 0.92em; }
+            .meta-separator { margin: 0 0.35em; }
+        }
+        </style>
 
 </head>
 
@@ -2660,24 +2703,12 @@
 
       <a
         class="contact-link"
-        href="https://x.com/"
+        href="https://www.x.com/iamdenoir"
         target="_blank"
         rel="noopener"
       >
 
-        X / Twitter
-
-      </a>
-
-
-      <a
-        class="contact-link"
-        href="https://linkedin.com/"
-        target="_blank"
-        rel="noopener"
-      >
-
-        LinkedIn
+        X/Twitter
 
       </a>
 
@@ -2741,6 +2772,14 @@
         <p class="essay-reader-meta" id="essayReaderMeta"></p>
       </div>
       <article class="essay-reader-content" id="essayReaderContent"></article>
+      <div class="essay-author-closing" aria-label="Author closing">
+        <p class="essay-author-cheers">Cheers,</p>
+        <p class="essay-author-signature"><em>Denóir—The Maverick</em></p>
+        <p class="essay-author-follow">
+          Want to know what I’ll be writing next, or the ideas I’m thinking about along the way?
+          Follow me on <a href="https://www.x.com/iamdenoir" target="_blank" rel="noopener">X/Twitter</a>.
+        </p>
+      </div>
     </main>
 
     <aside class="essay-reader-sidebar" id="essayReaderSidebar">
@@ -2821,35 +2860,6 @@
     <a href="#">
       Privacy Policy
     </a>
-
-  </div>
-
-
-  <div class="footer-social">
-
-
-    <a
-      href="https://x.com/"
-      target="_blank"
-      rel="noopener"
-    >
-      X
-    </a>
-
-
-    <span class="sep">
-      |
-    </span>
-
-
-    <a
-      href="https://linkedin.com/"
-      target="_blank"
-      rel="noopener"
-    >
-      LinkedIn
-    </a>
-
 
   </div>
 
@@ -3900,7 +3910,7 @@
 
     const author = essay.author || 'Denóir—The Maverick';
     const readTime = essay.readTime || '3 min read';
-    essayReaderMeta.innerHTML = `<span class="meta-by">By</span> <span class="meta-author">${author}</span><span class="meta-separator" aria-hidden="true">·</span><span class="meta-read-time">${readTime}</span>`;
+    essayReaderMeta.innerHTML = `<span class="meta-by">By</span>&nbsp;<span class="meta-author">${author}</span><span class="meta-separator" aria-hidden="true">·</span><span class="meta-read-time">${readTime}</span>`;
 
     if (essay.content && essay.content.trim()) {
       essayReaderContent.innerHTML = essay.content;
